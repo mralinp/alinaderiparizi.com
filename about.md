@@ -57,6 +57,9 @@ experience:
   - org: ", Tehran, Iran"
     role: "Software Engineer (Backend)"
     period: "2020 - 2022"
+  - org: "Sico Systems Intelligizer, Shiraz, Iran"
+    role: "R&D Intern → Junior Embedded Engineer"
+    period: "2017 - 2019"
 
 education:
   - school: "Iran University of Science and Technology (IUST), Tehran, Iran"
