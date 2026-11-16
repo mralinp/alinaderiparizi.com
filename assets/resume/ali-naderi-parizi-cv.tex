@@ -1,371 +1,129 @@
-\documentclass[10pt, letterpaper]{article}
-
-% Packages:
-\usepackage[
-    ignoreheadfoot,
-    top=2 cm,
-    bottom=2 cm,
-    left=2 cm,
-    right=2 cm,
-    footskip=1.0 cm,
-]{geometry}
-\usepackage[explicit]{titlesec}
-\usepackage{tabularx}
-\usepackage{array}
+\documentclass[10pt,a4paper]{article}
+\usepackage[top=1.65cm,bottom=1.65cm,left=1.85cm,right=1.85cm,footskip=0.8cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[default,type1]{sourcesans}
+\input{glyphtounicode}
+\pdfgentounicode=1
 \usepackage[dvipsnames]{xcolor}
-\definecolor{primaryColor}{RGB}{0, 79, 144}
-\usepackage{enumitem}
-\usepackage{fontawesome5}
-\usepackage{amsmath}
-\usepackage{etoolbox}
-\usepackage[
-    pdftitle={Ali Naderi Parizi's CV},
-    pdfauthor={Ali Naderi Parizi},
-    pdfcreator={LaTeX},
-    colorlinks=true,
-    urlcolor=primaryColor
-]{hyperref}
-\usepackage{url}
+\definecolor{primaryColor}{RGB}{25,64,89}
+\usepackage{titlesec,enumitem,needspace,fancyhdr,lastpage}
+\usepackage{microtype}
+\usepackage[pdftitle={Ali Naderi Parizi - CV - AI and Systems Engineering},pdfauthor={Ali Naderi Parizi},colorlinks=true,urlcolor=primaryColor]{hyperref}
 \urlstyle{same}
-\usepackage[pscoord]{eso-pic}
-\usepackage{calc}
-\usepackage{bookmark}
-\usepackage{lastpage}
-\usepackage{changepage}
-\usepackage{paracol}
-\usepackage{ifthen}
-\usepackage{needspace}
-\usepackage{iftex}
-
-% Machine-readable text
-\ifPDFTeX
-    \IfFileExists{glyphtounicode.tex}{\input{glyphtounicode}\pdfgentounicode=1}{}
-    \usepackage[T1]{fontenc}
-    \usepackage[utf8]{inputenc}
-\fi
-
-\usepackage[default, type1]{sourcesanspro}
-
-% Layout settings
-\AtBeginEnvironment{adjustwidth}{\partopsep0pt}
-\pagestyle{empty}
-\setcounter{secnumdepth}{0}
 \setlength{\parindent}{0pt}
-\setlength{\topskip}{0pt}
-\setlength{\columnsep}{0.15cm}
-\makeatletter
-\let\ps@customFooterStyle\ps@plain
-\patchcmd{\ps@customFooterStyle}{\thepage}{
-    \color{gray}\textit{\small Ali Naderi Parizi - Page \thepage{} of \pageref*{LastPage}}
-}{}{}
-\makeatother
-\pagestyle{customFooterStyle}
-
-\titleformat{\section}{
-    \needspace{4\baselineskip}
-    \Large\color{primaryColor}
-}{
-}{
-}{
-    \textbf{#1}\hspace{0.15cm}\titlerule[0.8pt]\hspace{-0.1cm}
-}[]
-\titlespacing{\section}{-1pt}{0.3 cm}{0.2 cm}
-
-\newenvironment{highlights}{
-    \begin{itemize}[
-        topsep=0.10 cm,
-        parsep=0.10 cm,
-        partopsep=0pt,
-        itemsep=0pt,
-        leftmargin=0.4 cm + 10pt
-    ]
-}{
-    \end{itemize}
-}
-
-\newenvironment{onecolentry}{
-    \begin{adjustwidth}{0.2 cm}{0.2 cm}
-}{
-    \end{adjustwidth}
-}
-
-\newenvironment{twocolentry}[2][]{
-    \onecolentry
-    \def\secondColumn{#2}
-    \setcolumnwidth{\fill, 4.5 cm}
-    \begin{paracol}{2}
-}{
-    \switchcolumn \raggedleft \secondColumn
-    \end{paracol}
-    \endonecolentry
-}
-
-\newenvironment{threecolentry}[3][]{
-    \onecolentry
-    \def\thirdColumn{#3}
-    \setcolumnwidth{1 cm, \fill, 4.5 cm}
-    \begin{paracol}{3}
-    {\raggedright #2} \switchcolumn
-}{
-    \switchcolumn \raggedleft \thirdColumn
-    \end{paracol}
-    \endonecolentry
-}
-
-\newenvironment{header}{
-    \setlength{\topsep}{0pt}\par\kern\topsep\centering\color{primaryColor}\linespread{1.5}
-}{
-    \par\kern\topsep
-}
-
-% Hyperlink formatting
-\let\hrefWithoutArrow\href
-\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+\setlength{\parskip}{2pt}
+\setcounter{secnumdepth}{0}
+\titleformat{\section}{\large\bfseries\color{primaryColor}}{}{0pt}{}[\vspace{3pt}\titlerule]
+\titlespacing*{\section}{0pt}{9pt}{5pt}
+\setlist[itemize]{leftmargin=1.25em,topsep=2pt,itemsep=1pt,parsep=0pt,partopsep=0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize\color{gray}Ali Naderi Parizi\quad |\quad Curriculum Vitae}
+\fancyfoot[R]{\footnotesize\color{gray}\thepage\ /\ \pageref*{LastPage}}
+\newcommand{\entry}[3]{\needspace{4\baselineskip}\par\addvspace{4pt}\textbf{#1}\hfill {\small #2}\par\nopagebreak{\itshape #3}\par\nopagebreak}
+\newcommand{\project}[2]{\needspace{4\baselineskip}\par\addvspace{4pt}\textbf{#1}\par\nopagebreak{\small #2}\par\nopagebreak}
 
 \begin{document}
-    \begin{header}
-        \fontsize{20 pt}{20 pt}
-        \textbf{Ali Naderi Parizi}
+\begin{center}
+{\fontsize{25}{29}\selectfont\bfseries\color{primaryColor}Ali Naderi Parizi}\par
+\vspace{3pt}
+{\large AI \& Systems Engineering \enspace $\cdot$ \enspace Technical Leadership}\par
+\vspace{4pt}
+\href{mailto:me@alinaderiparizi.com}{me@alinaderiparizi.com}\enspace |\enspace
+\href{https://alinaderiparizi.com}{alinaderiparizi.com}\enspace |\enspace
+\href{https://github.com/mralinp}{github.com/mralinp}\\[2pt]
+\href{https://www.linkedin.com/in/ali-naderi-parizi-5a0a74107/}{LinkedIn}\enspace |\enspace
+\href{https://scholar.google.com/citations?user=2zycrawAAAAJ}{Google Scholar}\enspace |\enspace Tehran, Iran
+\end{center}
+\vspace{-6pt}
 
-        \vspace{0.15 cm}
-        \normalsize
-        AI/ML Engineer \& Systems Architect | Authentication Systems | 3D Medical Imaging Research
+\section{Profile}
+Hands-on CTO at a small AI startup, systems engineer, and machine learning researcher. I take systems from exploratory R\&D and prototypes through production: AI applications and infrastructure, passwordless authentication, and embedded Linux. My research combines geometric shape analysis and deep learning for 3D breast ultrasound, with a journal publication and open-source research software. I connect work across models, backend services, operating systems, and hardware, and lead engineering through architecture, implementation, and mentoring.
 
-        \vspace{0.3 cm}
+\section{Professional Experience}
+\entry{Chief Technology Officer, SciNext}{2025--present}{Small AI startup \enspace |\enspace Tehran, Iran}
+\begin{itemize}
+\item Own architecture and hands-on delivery across the production platform and AI applications; translate product needs into deployed systems and mentor engineers and early-stage AI teams.
+\item Designed and built Kubernetes (k3s) infrastructure with Argo CD, CI pipelines, a private registry, and automated service onboarding and deployment.
+\item Integrated Prometheus, Grafana, Loki, and Tempo; implemented organization-level isolation and per-application data credentials.
+\item Developed AI products including LLM-driven data extraction and a Persian-first chemical compound database with a retrieval-augmented assistant.
+\end{itemize}
+\entry{Backend Software Engineer, Symmio}{2026}{Remote}
+\begin{itemize}
+\item Improved microservice reliability and performance; contributed to anomaly detection using service metrics and observability tooling.
+\end{itemize}
+\entry{Software Engineer (AI), CyberDesign Nordic AB}{2024--2025}{Stockholm, Sweden}
+\begin{itemize}
+\item Developed machine learning systems for indoor positioning from mobile sensor data, with backend APIs and data pipelines for training and deployment.
+\end{itemize}
+\entry{Software Engineer; Engineering Lead, IDmelon Technologies}{2022--2024}{Vancouver, Canada}
+\begin{itemize}
+\item Took FIDO2 passwordless-authentication components from initial R\&D and prototypes into production.
+\item Built Windows local-account sign-in with security keys: a C++ credential provider, background authentication service, and local FIDO server.
+\item Led component design and architecture, mentored junior engineers, and worked with QA to diagnose and resolve production defects.
+\end{itemize}
+\entry{R\&D Intern; Junior Embedded Engineer, Sico Systems Intelligizer}{2017--2019}{Shiraz, Iran}
+Built FPGA and microcontroller systems, a DTMF-based GSM/GPRS control device, and an Allwinner F1C100S Linux board with analog video processing.
 
-        \normalsize
-        \mbox{\hrefWithoutArrow{tel:+989103070625}{{\footnotesize\faPhone*}\hspace*{0.13cm}+98 910-307-0625}}%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{mailto:alinaderiparizi@gmail.com}{{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}alinaderiparizi@gmail.com}}%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{https://alinaderiparizi.com}{{\footnotesize\faGlobe}\hspace*{0.13cm}alinaderiparizi.com}}%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{https://www.linkedin.com/in/ali-naderi-parizi-5a0a74107}{{\footnotesize\faLinkedinIn}\hspace*{0.13cm}linkedin.com/in/ali-naderi-parizi}}%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{https://github.com/mralinp}{{\footnotesize\faGithub}\hspace*{0.13cm}@mralinp}}%
-    \end{header}
+\section{Education}
+\textbf{MSc, Artificial Intelligence and Robotics} \hfill 2020--2023\\
+Iran University of Science and Technology, Tehran. Thesis: breast lesion classification in 3D automated breast ultrasound; advised by Dr. Mohsen Soryani and Dr. Ehsan Kozegar.\par
+\textbf{BSc, Computer Engineering, Shiraz University} \hfill 2015--2020\\
+Graduation project: a Linux-based system-on-board for analog video acquisition and embedded image processing.
 
-    \vspace{0.2 cm}
+\newpage
+\setlength{\parskip}{1pt}
+\setlist[itemize]{leftmargin=1.25em,topsep=1pt,itemsep=0pt,parsep=0pt,partopsep=0pt}
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+\section{Research \& Publication}
+\entry{3D Breast Ultrasound and Spectral Shape Analysis}{2020--present}{MSc research and continuing collaboration, Iran Image Processing Lab}
+\begin{itemize}
+\item Study lesion geometry for breast-mass classification; reproduced radiomics and hybrid CNN methods on TDSC-ABUS under a documented protocol.
+\item Develop lesion meshing, generalized surface eigenmodes, and heat/wave kernel signatures; check spectra, scaling, and rigid motion. Classification and robustness studies are ongoing.
+\item Maintain the \href{https://github.com/mralinp/abus-classification}{open research code and experimental protocol} and the \href{https://pypi.org/project/tdsc-abus2023-pytorch/}{TDSC-ABUS2023 PyTorch dataset toolkit}, for volumetric data, tumor crops, and memory-mapped caching.
+\end{itemize}
+S. Barekatrezaei, \textbf{A. Naderiparizi}, E. Kozegar, J. Ghofrani, and M. Soryani.
+``Breast mass classification in 3D ABUS based on Laplace-Beltrami spectra and dual path CNN.''
+\textit{Expert Systems with Applications}, vol. 299, article 129973, 2026.
+\href{https://doi.org/10.1016/j.eswa.2025.129973}{doi:10.1016/j.eswa.2025.129973}.
 
-    \section{Research Interests}
-    \begin{onecolentry}
-        Generative Modeling, Probabilistic Machine Learning, 3D Medical Image Analysis, Computational Biology, Representation Learning, High-Dimensional Data Modeling
-    \end{onecolentry}
+\section{Selected Projects}
+\project{Native OpenWrt for the ZLT X28 5G Router}{Embedded Linux, firmware reverse engineering \enspace |\enspace \href{https://github.com/mralinp/zlt-x28-openwrt}{GitHub}}
+\begin{itemize}
+\item Ported OpenWrt userspace to a locked-down MediaTek MT6890/T750 router; integrated its vendor kernel and cellular stack with netifd, LuCI, and standard networking.
+\item Built guarded USB recovery, verified backups of 51 NAND partitions, and reproducible images with stock A/B fallback. Native firmware carries 5G traffic on one tested unit; broader validation is ongoing.
+\end{itemize}
+\project{Ez-Crawl: LLM-Driven Web Data Pipelines}{AI applications and developer tooling \enspace |\enspace \href{https://ezcrawl.ir}{ezcrawl.ir}}
+\begin{itemize}
+\item Built visual web-extraction pipelines using local or hosted LLMs, with branching, versioned workflows, and run history.
+\item Implemented an MCP interface for agents to construct, validate, execute, and inspect extraction pipelines.
+\end{itemize}
+\project{MQute}{Async Python MQTT framework \enspace |\enspace \href{https://github.com/mralinp/MQute}{GitHub}}
+FastAPI-style routing, typed payloads, dependency injection, middleware, and broker-free testing for MQTT services.
+\project{JoME and Persian Speech Synthesis}{Embedded control and generative speech \enspace |\enspace \href{https://jome-farmer.ir}{JoME} \enspace |\enspace \href{https://tts.jome-farmer.ir}{TTS demo}}
+Built an ESP32/FreeRTOS irrigation prototype with scheduling, safety interlocks, flow sensing, local control, and a FastAPI application; cloud integration is ongoing. Separately developed Persian TTS and voice-cloning pipelines, including data preparation and model adaptation.
 
-    \section{Education}
-    \begin{threecolentry}{\textbf{MSc}}{2020--2023}
-        \textbf{Iran University of Science and Technology (IUST)},
-        Artificial Intelligence and Robotics
-        \begin{highlights}
-            \item \textbf{Thesis:} Classification of Human Breast Cancer Lesions in 3D Automated Breast Ultrasound (3D-ABUS) Images
-            \item Focus on deep learning methods for medical image analysis and volumetric biomedical data
-            \item Relevant coursework: Machine Learning, Deep Learning, Computer Vision, Image Processing, Stochastic Processes
-        \end{highlights}
-    \end{threecolentry}
+\section{Teaching}
+\begin{itemize}
+\item \textbf{Computer Vision TA, IUST (2022):} supervised graduate labs and designed a 3D tumor-mesh classification project focused on lesion-surface detail.
+\item \textbf{Data Structures and Algorithm Design TA, Shiraz University (2017):} designed assignments and projects, ran quizzes, and graded submissions.
+\item \textbf{Elected ACM ICPC representative, Shiraz University (2016--2017):} organized contests, taught problem solving, and mentored competitors; competitive programming TA (2016).
+\item \textbf{Informatics Olympiad Instructor, Dastgheyb High School, Sampad (2016):} taught algorithm design and competitive programming to high-school students.
+\end{itemize}
 
-    \begin{threecolentry}{\textbf{BSc}}{2015--2020}
-        \textbf{Shiraz University},
-        Computer Engineering
-        \begin{highlights}
-            \item \textbf{Project:} Designed and implemented a System-on-Board capable of running the Linux kernel and processing analog video signals for embedded vision systems
-        \end{highlights}
-    \end{threecolentry}
+\section{Academic Service}
+\begin{itemize}
+\item \textbf{Peer reviewer, \textit{Journal of Imaging Informatics in Medicine} (2026):} evaluated breast-imaging classification research and experimental methodology.
+\item \textbf{Judge, AI Research Challenge, SID and IranDoc (2026):} evaluated scientific-literature analysis systems, including knowledge graphs, topic clustering, and research-trend analysis.
+\end{itemize}
 
-    \section{Publications}
-    \begin{twocolentry}{Ongoing}
-        \textbf{Spherical Shape-Based Features for Classification of Breast Tumors in 3D-ABUS Images} \\
-        \textbf{A. Naderiparizi}, S. Barekat, E. Kozegar, M. Soryani \\
-        \textit{Current work} \hfill \href{https://alinaderiparizi.com/abus-classification/}{project page and code}
-    \end{twocolentry}
-
-    \begin{twocolentry}{2025}
-        \textbf{Breast Mass Classification in 3D ABUS based on Laplace-Beltrami Spectra and Dual Path CNN} \\
-        S. Barekat, \textbf{A. Naderiparizi}, E. Kozegar, M. Soryani \\
-        \textit{Expert Systems with Applications} \hfill \href{https://doi.org/10.1016/j.eswa.2025.129973}{doi:10.1016/j.eswa.2025.129973}
-    \end{twocolentry}
-
-    \section{Academic Service}
-    \begin{twocolentry}{2026}
-        \textbf{Peer Reviewer}, Journal of Imaging Informatics in Medicine
-        \begin{highlights}
-            \item Reviewed a manuscript on breast tumor classification using medical imaging. Provided feedback on experimental design, model evaluation, and methodology.
-        \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{2026}
-        \textbf{Judge -- AI Research Challenge}, Scientific Information Database (SID) and IranDoc
-        \begin{highlights}
-            \item Selected as a judge for a national AI challenge on developing machine learning models for scientific literature analysis. Evaluated systems for: constructing knowledge graphs from papers, extracting references and narrative structure, hierarchical topic clustering, identifying research trends, and automatically extracting key scientific terms in Persian and English with semantic equivalence, including extraction of key sections for supporting PhD thesis and research publications.
-        \end{highlights}
-    \end{twocolentry}
-
-    \section{Teaching Experience}
-    \begin{twocolentry}{Tehran, Iran \\ 2022}
-        \textbf{Teaching Assistant -- Computer Vision}, Dr. Mohsen Soryani, Iran University of Science and Technology
-        \begin{highlights}
-            \item Assisted graduate students in Computer Vision courses and supervised lab sessions. Introduced a 3D tumor classification project aligned with my MSc thesis, where students built 3D meshes from tumor segmentations and applied techniques to enhance mesh resolution for classification. The project emphasized detecting fine tumor surface details such as spiculations and narrow protrusions, critical for accurate malignancy assessment using deep learning pipelines.
-        \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{Shiraz, Iran \\ 2017}
-        \textbf{Teaching Assistant -- Data Structures and Algorithm Design}, Dr. Korush Zyarati
-        \begin{highlights}
-            \item Held quizzes, defined homework assignments, graded student submissions, and designed midterm and final projects. Guided students to understand real-world challenges in algorithm design and problem solving, ensuring comprehension of both theoretical concepts and practical applications.
-        \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{Shiraz, Iran \\ 2016-2017}
-        \textbf{ACM ICPC Association Representative}, Shiraz University
-    \begin{highlights}
-    \item Elected as the representative of the university's ACM ICPC association, responsible for organizing competitive programming contests, conducting problem-solving courses, and mentoring students and high school participants. Coordinated workshops, training sessions, and competitions to foster algorithmic thinking and prepare participants for national and international contests.
-    \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{Shiraz, Iran \\ 2016}
-        \textbf{Teaching Assistant -- Competitive Programming}, Dr. Mohammad Taheri
-        \begin{highlights}
-            \item Assisted undergraduate students in competitive programming courses, organized problem-solving sessions, and provided guidance on algorithmic challenges and coding practices. Supported students in developing efficient solutions and preparing for ACM ICPC competitions.
-        \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{Shiraz \\ 2016}
-        \textbf{Instructor -- Computer Science Olympiad (IOI) Preparation}, Dastgheyb High School (Sampad)
-        \begin{highlights}
-            \item Taught high school students preparation courses for the International Olympiad in Informatics (IOI). Guided students in problem-solving strategies, algorithm design, and competitive programming techniques to strengthen their performance in national and international competitions.
-        \end{highlights}
-    \end{twocolentry}
-
-    \section{Research Projects}
-    \begin{twocolentry}{2026}
-        \textbf{Persian Text-to-Speech System with Single-Shot Voice Cloning}
-        \begin{highlights}
-            \item Developed a transformer-based generative text-to-speech system capable of producing fluent Persian speech and performing single-shot voice cloning.
-            \item Adapted modern neural TTS architectures to Persian through dataset construction, large-scale data cleaning, and linguistic preprocessing.
-            \item Designed data pipelines for training and fine-tuning models, implemented preprocessing and post-training techniques to improve pronunciation and fluency in Persian speech generation.
-            \item Project demo: \href{https://tts.jome-farmer.ir}{tts.jome-farmer.ir}
-        \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{2025}
-        \textbf{Ez-Crawl: Agentic Web Crawler}
-        \begin{highlights}
-            \item LLM-based intelligent web crawler designed to extract structured information from raw HTML using prompt-guided extraction. Supports local and cloud-based LLMs and automated browsing pipelines.
-        \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{2024}
-        \textbf{TDSC-ABUS2023 PyTorch Dataset Toolkit}
-        \begin{highlights}
-            \item Developed and released an open-source PyTorch toolkit for the TDSC2023 Grand Challenge on 3D Automated Breast Ultrasound (ABUS) analysis.
-            \item Standardized dataset loaders, preprocessing utilities, and training interfaces for classification and segmentation tasks on volumetric breast ultrasound data.
-            \item Published as both a GitHub repository and a PyPI package. Repository: \href{https://github.com/mralinp/tdsc-abus2023-pytorch}{github.com/mralinp/tdsc-abus2023-pytorch}
-        \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{2020}
-        \textbf{Robotic Vision for Agricultural Automation}
-        \begin{highlights}
-            \item Designed a computer vision system to detect optimal cutting points of saffron flowers for automated harvesting.
-            \item The system became the vision of a robotic saffron processing machine that cuts each flower where the model points. Video: \href{https://www.youtube.com/watch?v=WaYx6MPUO_E}{youtube.com/watch?v=WaYx6MPUO\_E}
-        \end{highlights}
-    \end{twocolentry}
-
-    \section{Professional Experience}
-    \begin{twocolentry}{Tehran, Iran \\ 2025--Present}
-        \textbf{SciNext}, Chief Technology Officer (AI)
-        \begin{highlights}
-            \item Designed and built the company's production platform single-handedly in about a month: self-service GitOps on Kubernetes (k3s) with Argo CD, Gitea Actions and a private container registry. A push to \texttt{main} is built, deployed and rolled out with no manual step; new services onboard themselves from a template.
-            \item Unified observability for every service: Prometheus, Grafana, Loki, Tempo and Alloy, with metrics, logs and traces in one place.
-            \item Security by design: a write-only CI identity for application secrets, per-organization namespaces and RBAC, and per-application database and object-storage credentials (PostgreSQL, MongoDB, MinIO).
-            \item The platform runs the company's production services across 5 project organizations; bringing a newly acquired GPU cluster onto it for model training and inference.
-            \item Technical evaluation and mentorship for early-stage AI startups.
-        \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{Remote \\ 2026}
-        \textbf{Symmio} (\href{https://symm.io}{symm.io}), Backend Software Engineer
-        \begin{highlights}
-            \item Improved the behaviour of the platform's microservices: reliability and performance under real load.
-            \item Worked on the anomaly detection stack, built on performance metrics and observability tooling, to catch misbehaving services before users do.
-        \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{Stockholm, Sweden \\ 2024--2025}
-        \textbf{CyberDesign Nordic AB}, Software Engineer (AI)
-        \begin{highlights}
-            \item Developed machine learning systems for indoor positioning using mobile sensor data. Built backend APIs and data pipelines supporting ML model training and deployment.
-        \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{Vancouver, Canada \\ 2022--2024}
-        \textbf{IDmelon Technologies Inc} (\href{https://idmelon.com}{idmelon.com}), Software Engineer, then engineering lead
-        \begin{highlights}
-            \item Passwordless authentication on the FIDO2 standard (IDmelon later joined HID). Worked on the product from its earliest stage: initial R\&D, prototypes and demonstrations, the first production version, and iteration in production.
-            \item Designed and built Windows sign-in with FIDO2 security keys for local accounts, then supported by Windows only for business accounts: a C++ credential provider, a background authentication service and a local FIDO server.
-            \item Led the engineering team: designed and implemented major components, helped evolve the architecture, trained and mentored junior engineers, and worked with QC to reproduce, diagnose and fix production bugs.
-            \item Designed secure authentication systems and distributed cloud services; system-level development, data processing pipelines and API architecture. Case study: \href{https://alinaderiparizi.com/project/authentication/fido2/security/windows/2026/09/28/idmelon-passwordless-authentication.html}{alinaderiparizi.com}
-        \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{Tehran, Iran \\ 2020--2022}
-        \textbf{ ()}, Software Engineer (Backend)
-        \begin{highlights}
-            \item Developed scalable backend services and microservice architectures for large-scale data processing systems.
-        \end{highlights}
-    \end{twocolentry}
-
-    \begin{twocolentry}{Shiraz, Iran \\ 2017--2019}
-        \textbf{Sico Systems Intelligizer}, R\&D Intern $\rightarrow$ Junior Embedded Engineer
-        \begin{highlights}
-            \item R\&D across FPGAs, microcontrollers and embedded hardware.
-            \item Built a hardware DTMF detector, then a GSM/GPRS device around it that answers calls, plays voice prompts and takes commands and access codes from the caller's keypad; selected and integrated the chips and ensured signal quality.
-            \item Evaluated Chinese SoC chipsets and built a Linux-based system-on-board on the Allwinner F1C100S (Lichee Pi Nano class) with added analog video input and on-board image processing, such as Laplacian filtering for motion detection.
-        \end{highlights}
-    \end{twocolentry}
-
-    \section{Skills \& Technologies}
-    \begin{onecolentry}
-        \textbf{Programming:} Python, C/C++, Rust, Java, C\#, JavaScript/TypeScript
-    \end{onecolentry}
-    \begin{onecolentry}
-        \textbf{Machine Learning:} PyTorch, TensorFlow, PyTorch Lightning, HuggingFace Transformers, YOLO
-    \end{onecolentry}
-    \begin{onecolentry}
-        \textbf{Scientific Computing:} NumPy, SciPy, Linux
-    \end{onecolentry}
-    \begin{onecolentry}
-        \textbf{Data Systems:} MongoDB, PostgreSQL, MySQL, MinIO (S3)
-    \end{onecolentry}
-    \begin{onecolentry}
-        \textbf{Platform \& Infrastructure:} Kubernetes (k3s), Argo CD, GitOps, Gitea Actions, Docker, Prometheus, Grafana, Loki, Tempo, OpenTelemetry, nginx, WireGuard, Proxmox
-    \end{onecolentry}
-    \begin{onecolentry}
-        \textbf{Embedded:} FPGA, microcontrollers, embedded Linux, Allwinner SoCs
-    \end{onecolentry}
-
-    \section{References}
-    \vspace{0.2 cm}
-
-    \begin{twocolentry}{
-        Iran University of Science and Technology, Tehran \\
-        Email: \href{mailto:soryani@iust.ac.ir}{soryani@iust.ac.ir}
-    }
-        \textbf{Dr. Mohsen Soryani}
-        \begin{highlights}
-            \item Primary Thesis Advisor, MSc in Artificial Intelligence
-        \end{highlights}
-    \end{twocolentry}
-
-    \vspace{0.2 cm}
-
-    \begin{twocolentry}{
-        Guilan University, Tehran \\
-        Email: \href{mailto:kozegar@guilan.ac.ir}{kozegar@guilan.ac.ir}
-    }
-        \textbf{Dr. Ehsan Kozegar}
-        \begin{highlights}
-            \item Second Thesis Supervisor, MSc in Artificial Intelligence
-        \end{highlights}
-    \end{twocolentry}
-
+\section{Technical Skills}
+\textbf{AI and research:} Python, PyTorch, Lightning, Transformers, NumPy, SciPy, 3D imaging, spectral geometry.\\
+\textbf{Applications:} TypeScript, React, FastAPI, PostgreSQL, MongoDB, MQTT, LLM tooling.\\
+\textbf{Systems:} C/C++, Linux, FIDO2, Windows credential providers, embedded Linux, ESP32, FreeRTOS, FPGA.\\
+\textbf{Infrastructure:} Docker, Kubernetes, Argo CD, CI/CD, Prometheus, Grafana, Loki, Tempo.
+\vfill
+{\footnotesize\color{gray}Updated November 2026. Project links provide code, technical write-ups, and validation details.}
 \end{document}

@@ -32,6 +32,7 @@ plugins:
   - jekyll-sitemap
 
 exclude:
+  - cv
   - design
   - scripts
   - sample.html
